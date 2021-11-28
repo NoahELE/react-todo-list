@@ -7,22 +7,28 @@ import Footer from './components/Footer';
 
 export type Todo = { id: string; content: string; checked: boolean };
 
-interface isState {
+interface IsState {
   todos: Todo[];
 }
 
-export default class App extends Component<unknown, isState> {
-  state = {
-    todos: [
-      { id: '1', content: '1', checked: true },
-      { id: '2', content: '2', checked: false },
-      { id: '3', content: '3', checked: false },
-    ],
+export default class App extends Component<unknown, IsState> {
+  state: IsState = {
+    todos: [],
   };
 
   addTodo = (newTodoObj: Todo) => {
-    let { todos } = this.state;
-    todos = [newTodoObj, ...todos];
+    const { todos } = this.state;
+    this.setState({ todos: [newTodoObj, ...todos] });
+  };
+
+  checkTodo = (id: string) => {
+    const { todos } = this.state;
+    todos.map((value) => {
+      if (value.id === id) {
+        value.checked = !value.checked;
+      }
+      return value;
+    });
     this.setState({ todos });
   };
 
@@ -32,7 +38,7 @@ export default class App extends Component<unknown, isState> {
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos} />
+          <List todos={todos} checkTodo={this.checkTodo} />
           <Footer />
         </div>
       </div>

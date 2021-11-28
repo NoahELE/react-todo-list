@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Component, ReactElement } from 'react';
 import './index.css';
 

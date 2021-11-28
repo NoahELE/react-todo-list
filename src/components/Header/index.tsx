@@ -12,7 +12,6 @@ export default class Header extends Component<isProps> {
     if (event.key === 'Enter' && event.currentTarget.value.trim() !== '') {
       const { addTodo } = this.props;
       addTodo({ id: nanoid(), content: event.currentTarget.value, checked: false });
-      // eslint-disable-next-line no-param-reassign
       event.currentTarget.value = '';
     }
   };

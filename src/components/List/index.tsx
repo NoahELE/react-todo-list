@@ -3,23 +3,23 @@ import { Todo } from '../../App';
 import Item from '../Item';
 import './index.css';
 
-// interface isState {
-// itemArr: Item[];
-// }
-
 interface isProps {
   todos: Todo[];
+  checkTodo: (id: string) => void;
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class List extends Component<isProps, unknown> {
+export default class List extends Component<isProps> {
   render(): ReactElement {
-    const { todos } = this.props;
+    const { todos, checkTodo } = this.props;
+    const todoArr: Todo[] = [];
+    todos.forEach((value) => {
+      todoArr.push(value);
+    });
     return (
       <ul className="todo-main">
-        {todos.map((todo) => (
-          <Item key={todo.id} {...todo} />
-        ))}
+        {todoArr.map((todo) => {
+          return <Item key={todo.id} checkTodo={checkTodo} {...todo} />;
+        })}
       </ul>
     );
   }

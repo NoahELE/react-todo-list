@@ -5,9 +5,9 @@ module.exports = {
     node: true,
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
-    'airbnb',
-    'airbnb/hooks',
+    'google',
     'plugin:react/jsx-runtime',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
@@ -22,17 +22,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'import/extensions': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    'react/jsx-props-no-spreading': 'off',
-    'react/state-in-constructor': 'off',
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        paths: ['src'],
-        extensions: ['.ts', '.tsx', '.native.js'],
-      },
-    },
+    'require-jsdoc': 'off',
+    'no-invalid-this': 'off',
   },
 };
