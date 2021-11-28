@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Component, ReactElement } from 'react';
+import './index.css';
 
 export default class Footer extends Component {
   state = {
@@ -15,6 +16,7 @@ export default class Footer extends Component {
         <span>
           completed {complete} / {total}
         </span>
+        <button type="button">clear all tasks</button>
       </label>
     );
   }

@@ -1,8 +1,27 @@
-/* eslint-disable react/prefer-stateless-function */
-import { Component, ReactElement } from 'react';
+import { Component, KeyboardEventHandler, ReactElement } from 'react';
+import { nanoid } from 'nanoid';
+import { Todo } from '../../App';
+import './index.css';
 
-export default class Header extends Component {
+interface isProps {
+  addTodo: (newTodoObj: Todo) => void;
+}
+
+export default class Header extends Component<isProps> {
+  handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (event.key === 'Enter' && event.currentTarget.value.trim() !== '') {
+      const { addTodo } = this.props;
+      addTodo({ id: nanoid(), content: event.currentTarget.value, checked: false });
+      // eslint-disable-next-line no-param-reassign
+      event.currentTarget.value = '';
+    }
+  };
+
   render(): ReactElement {
-    return <input placeholder="enter your tasks here, click Enter to add" />;
+    return (
+      <div className="todo-header">
+        <input type="text" placeholder="enter your tasks here, click Enter to add" onKeyUp={this.handleKeyUp} />
+      </div>
+    );
   }
 }

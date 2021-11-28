@@ -1,25 +1,29 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Component, ReactElement } from 'react';
+import './index.css';
 
-interface isState {
-  checked: boolean;
+interface isProps {
+  key: string;
+  id: string;
   content: string;
+  checked: boolean;
 }
 
-export default class Item extends Component<unknown, isState> {
-  state = {
-    checked: false,
-    content: '',
+// eslint-disable-next-line react/prefer-stateless-function
+export default class Item extends Component<isProps> {
+  clickCheckbox = () => {
+    console.log('object');
   };
 
   render(): ReactElement {
-    const { checked, content } = this.state;
+    const { content, checked } = this.props;
     return (
-      <label>
-        <input type="checkbox" checked={checked} />
+      <li>
+        <input type="checkbox" checked={checked} onChange={this.clickCheckbox} />
         <span>{content}</span>
-        <span style={{ display: 'none' }}>delete</span>
-      </label>
+        <button type="button" className="btn btn-danger" style={{ display: 'none' }}>
+          delete
+        </button>
+      </li>
     );
   }
 }

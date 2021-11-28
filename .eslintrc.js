@@ -5,11 +5,11 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'airbnb',
     'airbnb/hooks',
     'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -22,8 +22,6 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'error',
     'import/extensions': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
