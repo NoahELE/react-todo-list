@@ -19,7 +19,11 @@ export default class Header extends Component<isProps> {
   render(): ReactElement {
     return (
       <div className="todo-header">
-        <input type="text" placeholder="enter your tasks here, click Enter to add" onKeyUp={this.handleKeyUp} />
+        <input
+          type="text"
+          placeholder="enter your tasks here, click Enter to add"
+          onKeyUp={this.handleKeyUp}
+        />
       </div>
     );
   }

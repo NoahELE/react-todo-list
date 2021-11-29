@@ -7,6 +7,7 @@ interface IsProps {
   content: string;
   checked: boolean;
   checkTodo: (id: string) => void;
+  deleteTodo: (id: string) => void;
 }
 
 interface IsState {
@@ -30,6 +31,14 @@ export default class Item extends Component<IsProps, IsState> {
     };
   };
 
+  handleDelete = (id: string) => {
+    return () => {
+      if (confirm('Are you sure about deleting this?')) {
+        this.props.deleteTodo(id);
+      }
+    };
+  };
+
   render(): ReactElement {
     const { id, content, checked } = this.props;
     const { mouseIn } = this.state;
@@ -41,7 +50,12 @@ export default class Item extends Component<IsProps, IsState> {
       >
         <input type="checkbox" checked={checked} onChange={this.handleCheck(id)} />
         <span>{content}</span>
-        <button type="button" className="btn btn-danger" style={{ display: mouseIn ? 'block' : 'none' }}>
+        <button
+          type="button"
+          className="btn btn-danger"
+          style={{ display: mouseIn ? 'block' : 'none' }}
+          onClick={this.handleDelete(id)}
+        >
           delete
         </button>
       </li>

@@ -10,13 +10,17 @@ export default class Footer extends Component {
   render(): ReactElement {
     const { complete, total } = this.state;
     return (
-      <label>
-        <input type="checkbox" />
-        <span>
-          completed {complete} / {total}
-        </span>
-        <button type="button">clear all tasks</button>
-      </label>
+      <div className="todo-footer">
+        <label className="todo-footer">
+          <input type="checkbox" />
+          <span>
+            completed {complete} / {total}
+          </span>
+        </label>
+        <button type="button" className="btn btn-danger">
+          clear all tasks
+        </button>
+      </div>
     );
   }
 }

@@ -32,13 +32,18 @@ export default class App extends Component<unknown, IsState> {
     this.setState({ todos });
   };
 
+  deleteTodo = (id: string) => {
+    const { todos } = this.state;
+    this.setState({ todos: todos.filter((value) => value.id !== id) });
+  };
+
   render(): ReactElement {
     const { todos } = this.state;
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos} checkTodo={this.checkTodo} />
+          <List todos={todos} checkTodo={this.checkTodo} deleteTodo={this.deleteTodo} />
           <Footer />
         </div>
       </div>
