@@ -37,6 +37,21 @@ export default class App extends Component<unknown, IsState> {
     this.setState({ todos: todos.filter((value) => value.id !== id) });
   };
 
+  checkAllTodo = (flag: boolean) => {
+    const { todos } = this.state;
+    todos.forEach((value) => {
+      value.checked = flag;
+    });
+    this.setState({ todos });
+  };
+
+  clearAllFinished = () => {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.filter((value) => !value.checked), // filter all which has attribute `checked` false
+    });
+  };
+
   render(): ReactElement {
     const { todos } = this.state;
     return (
@@ -44,7 +59,11 @@ export default class App extends Component<unknown, IsState> {
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
           <List todos={todos} checkTodo={this.checkTodo} deleteTodo={this.deleteTodo} />
-          <Footer />
+          <Footer
+            todos={todos}
+            checkAllTodo={this.checkAllTodo}
+            clearAllFinished={this.clearAllFinished}
+          />
         </div>
       </div>
     );

@@ -44,9 +44,9 @@ export default class Item extends Component<IsProps, IsState> {
     const { mouseIn } = this.state;
     return (
       <li
+        style={{ backgroundColor: mouseIn ? 'whitesmoke' : 'white' }}
         onMouseEnter={this.handleMouse(true)}
         onMouseLeave={this.handleMouse(false)}
-        style={{ backgroundColor: mouseIn ? 'whitesmoke' : 'white' }}
       >
         <input type="checkbox" checked={checked} onChange={this.handleCheck(id)} />
         <span>{content}</span>

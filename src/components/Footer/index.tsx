@@ -1,24 +1,40 @@
-import { Component, ReactElement } from 'react';
+import { ChangeEventHandler, Component, ReactElement } from 'react';
+import { Todo } from '../../App';
 import './index.css';
 
-export default class Footer extends Component {
-  state = {
-    complete: 0,
-    total: 0,
+interface IsProps {
+  todos: Todo[];
+  checkAllTodo: (flag: boolean) => void;
+  clearAllFinished: () => void;
+}
+
+export default class Footer extends Component<IsProps> {
+  handleCheckAll: ChangeEventHandler<HTMLInputElement> = (event) => {
+    this.props.checkAllTodo(event.target.checked);
+  };
+
+  handleClearAllFinished = () => {
+    this.props.clearAllFinished();
   };
 
   render(): ReactElement {
-    const { complete, total } = this.state;
+    const { todos } = this.props;
+    const complete = todos.reduce((prev, curr) => prev + (curr.checked ? 1 : 0), 0);
+    const total = todos.length;
     return (
       <div className="todo-footer">
-        <label className="todo-footer">
-          <input type="checkbox" />
-          <span>
-            completed {complete} / {total}
-          </span>
+        <label>
+          <input
+            type="checkbox"
+            checked={total !== 0 ? complete === total : false}
+            onChange={this.handleCheckAll}
+          />
         </label>
-        <button type="button" className="btn btn-danger">
-          clear all tasks
+        <span>
+          complete {complete} / total {total}
+        </span>
+        <button type="button" className="btn btn-danger" onClick={this.handleClearAllFinished}>
+          clear all finished
         </button>
       </div>
     );
